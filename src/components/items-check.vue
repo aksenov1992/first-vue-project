@@ -1,6 +1,6 @@
 <template>
-    <ul class="list-items list-items-check">
-        <li class="item-check">adasd</li>
+    <ul class="list-items">
+        <li>adasd</li>
     </ul>
 </template>
 
@@ -8,6 +8,8 @@
 
 </script>
 
-<style>
-
+<style scoped>
+    ul {
+        margin-top: 0;
+    }
 </style>
