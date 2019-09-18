@@ -35,7 +35,9 @@ export default {
             }]
    },
 
-    getter: {
-
+    actions: {
+        onClickButton(context, payload) {
+            context.commit('addItemToCheckList', payload);
+        }
     }
 }

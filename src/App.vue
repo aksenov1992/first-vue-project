@@ -4,12 +4,7 @@
       <listClient/>
       <listItem/>
     </div>
-    <el-button>Add Item</el-button>
-    <div class="wrapper-items-check">
       <itemsCheck/>
-      <span>Сумма: ХХХ руб.</span>
-      <el-button @click="loadList">Send</el-button>
-    </div>
   </div>
 </template>
 
@@ -24,23 +19,6 @@ export default {
     listItem,
     listClient,
     itemsCheck
-  },
-  data () {
-    return {
-      loaddata: []
-    }
-  },
-  methods: {
-    loadList () {
-      this.$http.get('http://x.ksh.ru:9876/getKDS_bydishes')
-          .then(response => {
-            console.log(response.body);
-              return response.json()
-          })
-              .then(body => {
-                this.loaddata = body;
-              })
-    }
   }
 }
 </script>
