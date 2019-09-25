@@ -13,17 +13,25 @@
         computed: {
             items() {
                 return this.$store.state.listItem.dishes;
+            },
+            goods() {
+                return this.$store.state.listCheck.orderInfo;
             }
-
         },
 
         methods: {
             addItem(item) {
-                return this.$store.dispatch('onClickButton', {
-                    id: item.id,
-                    name: item.name,
-                    price: item.price,
-                });
+                const value = this.goods.findIndex(el => el.id === item.id);
+
+                if (value > -1) {
+                    return this.$store.commit('addQuantityItem', value);
+                } else {
+                    return this.$store.commit('addItemToCheckList', {
+                        id: item.id,
+                        name: item.name,
+                        price: item.price,
+                    });
+                }
             }
         }
     }

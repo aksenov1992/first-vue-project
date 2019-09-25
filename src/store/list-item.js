@@ -33,11 +33,5 @@ export default {
                 font_color: '',
                 price: 4
             }]
-   },
-
-    actions: {
-        onClickButton(context, payload) {
-            context.commit('addItemToCheckList', payload);
-        }
-    }
+   }
 }

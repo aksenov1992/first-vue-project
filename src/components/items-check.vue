@@ -2,7 +2,7 @@
     <div class="wrapper-items-check">
         <ul class="list-items">
             <li v-for="order in goods"
-            :key="order.id"><span>{{order.name}}</span> <el-button @click="removeItem(order)" type="danger">del</el-button></li>
+            :key="order.id"><span>{{order.name}}</span> <span>кол-во {{order.quantity}}</span><el-button @click="removeItem(order)" type="danger">del</el-button></li>
         </ul>
         <span>Цена: {{totality}} $</span>
         <el-button>Send</el-button>
@@ -31,5 +31,11 @@
 <style scoped>
     ul {
         margin-top: 0;
+    }
+
+    .wrapper-items-check {
+        padding-right: 10px;
+        display: flex;
+        flex-direction: column;
     }
 </style>

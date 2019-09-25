@@ -25,8 +25,9 @@ export default {
 
 <style scoped>
   .wrapper {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     border: 1px solid #E4E7ED;
     border-radius: 4px;
@@ -36,9 +37,4 @@ export default {
     padding-right: 10px;
   }
 
-  .wrapper-items-check {
-    padding-right: 10px;
-    display: flex;
-    flex-direction: column;
-  }
 </style>
