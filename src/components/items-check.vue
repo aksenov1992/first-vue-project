@@ -4,7 +4,7 @@
             <li v-for="order in goods"
             :key="order.id"><span>{{order.name}}</span> <span>кол-во {{order.quantity}}</span><el-button @click="removeItem(order)" type="danger">del</el-button></li>
         </ul>
-        <span>Цена: {{totality}} $</span>
+        <span>Цена: {{totality}} &#8381;</span>
         <el-button>Send</el-button>
     </div>
 </template>

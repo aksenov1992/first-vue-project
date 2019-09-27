@@ -1,9 +1,16 @@
 <template>
-    <ul class="list-items">
-        <li v-for="item in items"
-            @click="addItem(item)"
-            :key="item.id"><span>{{item.name}} - Цена {{item.price}} $ </span><el-button type="primary">add</el-button></li>
-    </ul>
+    <div>
+        <ul class="list-items" v-for="group in groups"
+            :key="group.id">
+                <span>{{group.name}}</span>
+                <li v-for="dish in filterDishes(group.id)"
+                    :key="dish.id"
+                    @click="addItem(dish)">
+                    <span>{{dish.name}}</span>
+                    <span>Цена {{dish.defaultSalePrice}} &#8381; </span>
+                </li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -11,11 +18,11 @@
     export default {
 
         computed: {
-            items() {
-                return this.$store.state.listItem.dishes;
-            },
             goods() {
                 return this.$store.state.listCheck.orderInfo;
+            },
+            groups() {
+                return this.$store.getters.groupFilter;
             }
         },
 
@@ -29,10 +36,30 @@
                     return this.$store.commit('addItemToCheckList', {
                         id: item.id,
                         name: item.name,
-                        price: item.price,
+                        price: item.defaultSalePrice,
                     });
                 }
+            },
+
+            filterDishes(group) {
+                return this.$store.getters.dishFilter(group);
             }
+        },
+        mounted() {
+            this.$http.get('https://data-sibers.firebaseio.com/dish-arr/0/dishes.json')
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    this.$store.state.listItem.dishes = data;
+                });
+            this.$http.get('https://data-sibers.firebaseio.com/dish-group/productgroups.json')
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    this.$store.state.listItem.group = data;
+                });
         }
     }
 
