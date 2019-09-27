@@ -1,15 +1,28 @@
 <template>
     <div>
-        <ul class="list-items" v-for="group in groups"
+        <!--<ul class="list-items" v-for="group in groups"
             :key="group.id">
-                <span>{{group.name}}</span>
+                <h4>{{group.name}}</h4>
                 <li v-for="dish in filterDishes(group.id)"
                     :key="dish.id"
                     @click="addItem(dish)">
                     <span>{{dish.name}}</span>
                     <span>Цена {{dish.defaultSalePrice}} &#8381; </span>
                 </li>
-        </ul>
+        </ul>-->
+        <el-tabs tab-position="left" style="min-height: 200px;">
+            <el-tab-pane
+            v-for="group in groups"
+            :key="group.id"
+            :label="group.name">
+                <li v-for="dish in filterDishes(group.id)"
+                    :key="dish.id"
+                    @click="addItem(dish)">
+                    <span>{{dish.name}}</span>
+                    <span>Цена {{dish.defaultSalePrice}} &#8381; </span>
+                </li>
+                </el-tab-pane>
+        </el-tabs>
     </div>
 </template>
 
